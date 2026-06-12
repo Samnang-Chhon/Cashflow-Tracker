@@ -161,7 +161,7 @@ body{font-family:system-ui,sans-serif;background:#f5f5f5;height:100vh;overflow:h
     </div>
     <div class="bar-r">
       <button class="lb2 on" id="ae" onclick="setL('en')">EN</button>
-      <button class="lb2" id="ak" onclick="setL('km')">KM</button>
+      <button class="lb2" id="ak" onclick="setL('km')">KH</button>
       <button class="lock" onclick="doLock()">&#128274;</button>
     </div>
   </div>
@@ -247,7 +247,7 @@ body{font-family:system-ui,sans-serif;background:#f5f5f5;height:100vh;overflow:h
           <table>
             <thead><tr>
               <th id="hhd">Date</th><th id="hhc">Category</th><th id="hhn">Note</th>
-              <th id="hhm">Method</th><th>Cur.</th><th id="hhf">Flow</th>
+              <th id="hhm">Method</th><th id='hcur'>Cur.</th><th id="hhf">Flow</th>
               <th id="hha">Amount</th><th></th>
             </tr></thead>
             <tbody id="txb"></tbody>
@@ -296,8 +296,8 @@ body{font-family:system-ui,sans-serif;background:#f5f5f5;height:100vh;overflow:h
               <input type="text" id="nce" placeholder="e.g. Gym">
             </div>
             <div class="fg" style="flex:1;min-width:110px">
-              <label>&#x1794;&#x17D2;&#x179A;&#x1797;&#x17C1;&#x178F; (KM)</label>
-              <input type="text" id="nck" placeholder="e.g. &#x1780;&#x17B8;&#x179B;&#x17B6;">
+              <label>ប្រភេទ (KH)</label>
+              <input type="text" id="nck" placeholder="e.g. កីឡា">
             </div>
             <div class="fg" style="min-width:110px">
               <label>Group</label>
@@ -360,7 +360,7 @@ var TR={
     ob:'Bank',oc:'Cash',
     pp1m:'Last 1 month',pp3m:'Last 3 months',pp6m:'Last 6 months',pp1y:'Last 1 year',ppall:'All time',
     pfall:'All flows',pfin:'Money in',pfout:'Money out',pfca:'All currencies',pfma:'All methods',
-    hhd:'Date',hhc:'Category',hhn:'Note',hhm:'Method',hhf:'Flow',hha:'Amount',ntx:'No transactions',
+    hhd:'Date',hhc:'Category',hhn:'Note',hhm:'Method',hhf:'Flow',hha:'Amount',hcur:'Cur.',ntx:'No transactions',
     stpin:'Change PIN',stpin2:'New 4-digit PIN',spbtn:'Save PIN',stcat:'Manage Categories',
     pok:'PIN updated!',per:'PIN must be 4 digits.',pwrng:'Wrong PIN. Try again.',
     ti:'Total in',to:'Total out',ne:'Net',sb:'Bank',sc:'Cash',
@@ -369,7 +369,7 @@ var TR={
   km:{ps:'\u1794\u1789\u17d2\u1785\u17bc\u179b PIN',
     bi:'▼ លុយចូល',
     bo:'▲ លុយចេញ',
-    lfl:'លំហូរ',ldt:'\u1780\u17b6\u179b\u1794\u179a\u17b7\u1785\u17d2\u1786\u17c1\u178f',
+    lfl:'លំហូរ',ldt:'កាលបរិច្ឆេទ',
     lcu:'រូបិយបណ្ណ',lam:'\u1785\u17c6\u1793\u17bd\u1793',
     lme:'តាមរយៈ',lca:'ប្រភេទ',
     lno:'ការពិពណ៏នា',
@@ -380,9 +380,9 @@ var TR={
     pp1m:'1\u1781\u17c2',pp3m:'3\u1781\u17c2',pp6m:'6\u1781\u17c2',pp1y:'1\u1786\u17d2\u1793\u17b6\u17c6',ppall:'\u178f\u17b6\u1798\u17bd\u179f',
     pfall:'រាល់លំហូរសាច់ប្រាក់',pfin:'លុយចូល',pfout:'លុយចេញ',
     pfca:'រូបិយបណ្ណ',pfma:'តាមរយៈធនាគារ/សាច់ប្រាក់',
-    hhd:'\u1780\u17b6\u179b\u1794\u179a\u17b7\u1785\u17d2\u1786\u17c1\u178f',hhc:'\u1794\u17d2\u179a\u1797\u17c1\u178f',hhn:'\u1796\u17b7\u1796\u178e\u17cc\u178e\u17b6',hhm:'\u179c\u17b7\u1792\u17b8',hhf:'\u178f\u17b7\u179f\u178f\u17d2\u178c',hha:'\u1785\u17c6\u1793\u17bd\u1793',
+    hhd:'កាលបរិច្ឆេទ',hhc:'ប្រភេទ',hhn:'ពិពណ៌នា',hhm:'\u179c\u17b7\u1792\u17b8',hhf:'លំហូរសាច់ប្រាក់',hha:'\u1785\u17c6\u1793\u17bd\u1793',
     ntx:'\u179a\u1780\u1798\u17b7\u1793\u17a1\u17be\u1789',
-    stpin:'ផ្លាស់ប្ដូរលេខសំងាត់',stpin2:'ណ្ណូបញ្ចូលលេខសំងាត់ថ្មី 4 ខ្ទង់',spbtn:'រក្សាទុក',
+    stpin:'ផ្លាស់ប្ដូរលេខសំងាត់',stpin2:'បញ្ចូលលេខសំងាត់ថ្មី 4 ខ្ទង់',spbtn:'រក្សាទុក',
     stcat:'គ្រប់គ្រងប្រភេទចំណូល/ចំណាយ',
     pok:'PIN \u1794\u17b6\u1793\u1795\u17d2\u179b\u17b6\u179f\u17cb!',per:'PIN \u178f\u17d2\u179a\u17bc\u179c\u178f\u17c2 4 \u1781\u17d2\u178f\u1784\u17cb\u17d4',pwrng:'PIN \u1798\u17b7\u1793\u178f\u17d2\u179a\u17b9\u1798\u178f\u17d2\u179a\u17bc\u179c\u17d4',
     ti:'\u1785\u17c6\u178e\u17bc\u179b\u179f\u179a\u17bb\u1794',to:'\u1785\u17c6\u178e\u17b6\u1799\u179f\u179a\u17bb\u1794',ne:'Net',sb:'\u1792\u1793\u17b6\u1782\u17b6\u179a',sc:'សាច់ប្រាក់',
@@ -720,7 +720,7 @@ function renderSum(){
     +'</div><div class="stl">'+t('sb')+' / '+t('sc')+'</div><div class="sg">'
     +'<div class="met"><div class="met-l">'+t('sb')+'</div><div class="met-v">'+bk+'</div></div>'
     +'<div class="met"><div class="met-l">'+t('sc')+'</div><div class="met-v">'+ca+'</div></div>'
-    +'</div><div class="stl">By Category</div>'
+    +'</div>'+'<div class="stl">'+(L==='km'?'សរុបបញ្ចូលគ្នា (1 USD = 4,000  រៀល)':'Combined Total (1 USD = 4,000 KHR)')+'</div>'+'<div class="sg">'+'<div class="met"><div class="met-l">'+(L==='km'?'ចំណូលសរុប':'Total Income')+' (USD)</div><div class="met-v inc">$'+(uI+(kI/4000)).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})+'</div></div>'+'<div class="met"><div class="met-l">'+(L==='km'?'ចំណាយសរុប':'Total Expenses')+' (USD)</div><div class="met-v exp">$'+(uO+(kO/4000)).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})+'</div></div>'+'<div class="met"><div class="met-l">Net (USD)</div><div class="met-v '+((uI+kI/4000-uO-kO/4000)>=0?'pos':'neg')+'">'+(uI+kI/4000-uO-kO/4000>=0?'+':'')+' $'+(uI+kI/4000-uO-kO/4000).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})+'</div></div>'+'</div>'+'<div class="stl">By Category</div>'
     +'<div class="tw"><table><thead><tr><th>Category</th><th>USD In</th><th>USD Out</th><th>KHR In</th><th>KHR Out</th></tr></thead>'
     +'<tbody>'+(cr||'<tr><td colspan="5" style="text-align:center;color:#bbb;padding:2rem">-</td></tr>')+'</tbody></table></div>';
 }
